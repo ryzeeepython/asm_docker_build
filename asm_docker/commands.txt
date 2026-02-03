@@ -1,0 +1,15 @@
+в первый раз:
+
+docker run --platform=linux/386 -it --name my_x86_env -v "$PWD:/work" debian:bookworm-slim bash
+cd /work
+apt update
+apt install -y nasm build-essential binutils gcc-multilib
+chmod +x build_asm.sh
+./build_asm.sh hello.asm
+./hello
+
+обычный заход (находимся в терминале в папке со всеми файлами):
+docker start -ai my_x86_env
+cd work
+./build_asm.sh hello.asm
+./hello
